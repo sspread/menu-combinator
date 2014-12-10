@@ -44,24 +44,10 @@ a:hover {
     text-decoration: underline;
 }
 
-.logo {
-  height: 2em;
+.error {
+    color: red;
 }
 
-code {
-    font-family: Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
-    -webkit-border-radius: 1px;
-    -moz-border-radius: 1px;
-    border-radius: 1px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    padding: 0px 3px;
-    display: inline-block;
-    color: #52595d;
-    background-color: #E8F2F5;
-    font-size: 40%;
-    line-height: 1.4em;
-    margin-left: -1em;
-    overflow: auto;
+.success {
+    color:green;
 }

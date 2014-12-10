@@ -1,0 +1,12 @@
+<p>Upload a .CSV or .TXT file to see all possible meal combinations adding up to a certain dollar amount.</p>
+<div>
+  <form id="upload_form" action="/" method="post" enctype="multipart/form-data">
+    <input id="upload_input" name="file" type="file" autofocus="" multiple="multiple"/>
+    <input id="upload_button" type="submit" value="Upload"/>
+  </form>
+</div>
+
+<div id="upload_messages">
+  <%= partial(:"partials/upload_error") if @error %>
+  <%= partial(:"partials/upload_success") if !@error && @filename %>
+</div>
