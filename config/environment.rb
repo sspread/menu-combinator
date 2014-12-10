@@ -21,6 +21,9 @@ require "sinatra/reloader" if development?
 require 'erb'
 require 'sinatra/partial'
 
+require './lib/file_parser'
+require './lib/money_parser'
+
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
