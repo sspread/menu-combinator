@@ -16,14 +16,14 @@ class Combo
 end
 
 class Combinator
-  attr_accessor :menu_prices, :total, :combos, :count
+  attr_accessor :menu_prices, :total, :combos
   def initialize(menu_prices, total)
-    @menu_prices = integerize(menu_prices)
+    @menu_prices = money_to_integer(menu_prices)
     @total = total*100
     @combos = []
   end
 
-  def integerize(arr)
+  def money_to_integer(arr)
     arr.map {|n| n*100}
   end
 
@@ -38,9 +38,8 @@ class Combinator
     sum.inject(:+)
   end
   def solve(total = @total, menu_prices = @menu_prices, combo = {})
-    @count+=1
     if total == 0
-      puts "Pushing combo: #{combo} -- #{@count}"
+      puts "Pushing combo: #{combo}"
       @combos << combo
       return
     end
@@ -62,14 +61,27 @@ class Combinator
   end
 end
 
+module CSVParser
+  require 'csv'
+
+  csv_string = File.read("menu.csv")
+  csv = CSV.parse(csv_string, headers: false)
+
+  csv.each do |row|
+    row
+  end
+  csv.shift
+  p csv
+end
 
 
-combinator = Combinator.new([3.5,3.5,2,1], 3.5)
-combinator.solve
-puts combinator.combos
-p combinator.combos.count
-p combinator.combos.uniq.count
-puts combinator.count
-combinator.combos.each {|combo| puts Combinator.combo_total(combo)}
+
+# combinator = Combinator.new([3.5,3.5,2,1], 3.5)
+# combinator.solve
+# puts combinator.combos
+# p combinator.combos.count
+# p combinator.combos.uniq.count
+# puts combinator.count
+# combinator.combos.each {|combo| puts Combinator.combo_total(combo)}
 
 
