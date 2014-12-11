@@ -10,3 +10,41 @@
   <%= partial(:"partials/upload_error") if @error %>
   <%= partial(:"partials/upload_success") if !@error && @filename %>
 </div>
+
+<% if @menu_data %>
+  <div id = "menu" class = "float-left">
+    <div class = "stats">
+      <p>$<%= @menu_data[:price_total] %> price target | <%= @menu_data[:menu_items].length %> items</p>
+    </div>
+    <div class = "list_headers">
+      <table>
+        <th class = "item-cell">item</th>
+        <th class = "price-cell">price</th>
+      </table>
+    </div>
+    <%= partial(:"partials/menu", locals: {menu: @menu_data[:menu_items]}) %>
+  </div>
+<% end %>
+
+<% if @combos %>
+  <div id = "combos" class = "float-right">
+    <div class = "stats">
+      <p><%= combo_count %> | <%= @time_to_solve %> seconds</p>
+    </div>
+    <div class = "list_headers">
+      <table>
+        <th class = "item-cell">item</th>
+        <th class = "price-cell">price</th>
+        <th class = "quantity-cell">qty</th>
+      </table>
+    </div>
+
+    <div id="combos-list">
+      <ul>
+        <% @combos.each do |combo| %>
+        <%= partial(:"partials/combo", locals: {combo: combo}) %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

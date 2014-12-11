@@ -3,7 +3,9 @@ $(function() {
     var fileValidator;
     fileValidator = new FileValidator();
     fileValidator.parseInput($("#upload_input"));
-    if (!fileValidator.validateFiletype()) {
+    if (fileValidator.validateFiletype()) {
+      fileValidator.showLoading($("#upload_messages"));
+    } else {
       event.preventDefault();
       fileValidator.showFailure($("#upload_messages"));
     }
@@ -33,12 +35,16 @@ FileValidator.prototype = {
     }
   },
 
-  // showSuccess: function(el) {
-  //   $(el).html("<p class='success'>Successfully uploaded "+this.fileName+"</p>")
-  // },
+  showLoading: function(el) {
+    $(el).html("<p class='success'>Loading "+this.fileName+"...</p>")
+  },
 
   showFailure: function(el) {
-    $(el).html("<p class='error'>Failed to upload: "+this.fileName+"<br> We need a \.csv or \.txt file!</p>")
+    if (this.fileName) {
+      $(el).html("<p class='error'>Failed to upload: "+this.fileName+"We need a \.csv or \.txt file!</p>")
+    } else {
+      $(el).html("<p class='error'>Forgetting the file?</p>")
+    }
   }
 
 }

@@ -1,0 +1,7 @@
+<li>
+  <table>
+    <% combo.each do |item, quantity| %>
+      <%= partial(:"partials/combo_item", locals: {item: item, quantity: quantity}) %>
+    <% end %>
+  </table>
+</li>

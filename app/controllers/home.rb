@@ -1,12 +1,16 @@
 include FileParser
-
+require 'pry'
+require 'benchmark'
 post '/' do
 
   validate_upload
   extname = File.extname(@filename)
   if extname == ".csv"
-    menu_data = CSVParser.create_objects_from_file(MenuItem, @filename)
-    Combinator.new(menu_data)
+    @menu_data = CSVParser.create_objects_from_file(MenuItem, @filename)
+    combinator = Combinator.new(@menu_data)
+    @time_to_solve = Benchmark.realtime {combinator.solve}
+    @combos = combinator.combos
+
   elsif extname == ".txt"
   end
 
