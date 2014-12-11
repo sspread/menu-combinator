@@ -35,21 +35,21 @@ FileValidator.prototype = {
 
   validateFiletype: function() {
     if (this.fileType === ".csv" || this.fileType === ".txt") {
-      return true
+      return true;
     } else {
-      return false
+      return false;
     }
   },
 
   showLoading: function(el) {
-    $(el).html("<p class='success'>Loading "+this.fileName+"...</p>")
+    $(el).html("<p class='success'>Loading "+this.fileName+"...</p>");
   },
 
   showFailure: function(el) {
     if (this.fileName) {
-      $(el).html("<p class='error'>Failed to upload: "+this.fileName+". We need a \.csv or \.txt file!</p>")
+      $(el).html("<p class='error'>Failed to upload: "+this.fileName+". We need a \.csv or \.txt file!</p>");
     } else {
-      $(el).html("<p class='error'>Forgetting the file?</p>")
+      $(el).html("<p class='error'>Forgetting the file?</p>");
     }
   }
 }

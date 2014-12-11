@@ -1,4 +1,4 @@
-<% if @menu_data %>
+<% if @menu_data && !@error %>
   <div id = "menu" class = "float-left">
     <div class = "stats">
       <p>$<%= menu_data[:price_total] %> price target | <%= menu_data[:menu_items].length %> items</p>
