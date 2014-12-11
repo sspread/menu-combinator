@@ -1,10 +1,16 @@
 $(function() {
-  $("#upload_form").on("submit", function() {
+  $("#upload_button").on("click", function() {
+    event.preventDefault();
+    $("#upload_input").click();
+  });
+
+  $("#upload_input").on("change", function() {
     var fileValidator;
     fileValidator = new FileValidator();
     fileValidator.parseInput($("#upload_input"));
     if (fileValidator.validateFiletype()) {
       fileValidator.showLoading($("#upload_messages"));
+      $("#upload_form").submit();
     } else {
       event.preventDefault();
       fileValidator.showFailure($("#upload_messages"));
@@ -41,10 +47,9 @@ FileValidator.prototype = {
 
   showFailure: function(el) {
     if (this.fileName) {
-      $(el).html("<p class='error'>Failed to upload: "+this.fileName+"We need a \.csv or \.txt file!</p>")
+      $(el).html("<p class='error'>Failed to upload: "+this.fileName+". We need a \.csv or \.txt file!</p>")
     } else {
       $(el).html("<p class='error'>Forgetting the file?</p>")
     }
   }
-
 }

@@ -1,5 +1,7 @@
-<table>
-  <% @menu_data[:menu_items].each do |item| %>
-    <%= partial(:"partials/item_row", locals: {item: item, quantity: nil}) %>
-  <% end %>
-</table>
+<div id = "menu-list">
+  <table>
+    <% @menu_data[:menu_items].each do |item| %>
+      <%= partial(:"partials/item_row", locals: {item: item, quantity: nil}) %>
+    <% end %>
+  </table>
+</div>

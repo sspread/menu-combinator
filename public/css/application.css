@@ -1,4 +1,4 @@
-body {font-family: Vollkorn; font-size: 130%; line-height: 140%; }
+body {font-family: Vollkorn; font-size: 120%; line-height: 130%; }
 h1, h2, h3, h4, h5, h6 {font-family: Georgia; line-height:100%; margin-top: 0.5em; margin-bottom: 0.5em; color: #36AECC; font-style: italic; font-weight: 400;}
 h1 {font-size: 1.8em;}
 h2 {font-size: 1.6em;}
@@ -56,10 +56,14 @@ a:hover {
   list-style-type: none;
 }
 
-#menu, #combos-list {
+#menu-list, #combos-list {
   height: 400px;
   overflow: scroll;
   position: relative;
+}
+
+#combos-list :first-child, #menu-list :first-child{
+  margin-top: 0px;
 }
 
 .float-left {
@@ -107,3 +111,4 @@ table {
   border: 2px solid grey;
   width: 100%;
 }
+

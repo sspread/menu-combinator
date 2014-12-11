@@ -23,7 +23,7 @@ class Combinator
           new_total = total-(item.price*quantity)
           solve(new_total, combo_copy)
         else
-          next
+          return
         end
       end
     end

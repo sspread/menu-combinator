@@ -1,32 +1,15 @@
-<p>Upload a .CSV or .TXT file to see all possible meal combinations adding up to a certain dollar amount.</p>
-<div>
-  <form id="upload_form" action="/" method="post" enctype="multipart/form-data">
-    <input id="upload_input" name="file" type="file" autofocus="" multiple="multiple"/>
-    <input id="upload_button" type="submit" value="Upload"/>
-  </form>
+<div id = "explanation">
+  <p>Ever been at a restaurant and wondered about all the combinations of menu items you could order that would total up to exactly the amount of money in your pocket? Today is your day! Upload a .csv or .txt file with <a href = "https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt">this format</a> to see just that.</p>
+  <%= partial(:"partials/upload_form") %>
 </div>
 
-<div id="upload_messages">
-  <%= partial(:"partials/upload_error") if @error %>
-  <%= partial(:"partials/upload_success") if !@error && @filename %>
-</div>
+
+<%= partial(:"partials/upload_message", locals: {error: @error, filename: @filename}) %>
 
 <% if @menu_data %>
-  <div id = "menu" class = "float-left">
-    <div class = "stats">
-      <p>$<%= @menu_data[:price_total] %> price target | <%= @menu_data[:menu_items].length %> items</p>
-    </div>
-    <%= partial(:"partials/table_headers") %>
-    <%= partial(:"partials/menu", locals: {menu: @menu_data[:menu_items]}) %>
-  </div>
+  <%= partial(:"partials/menu_column", locals: {menu_data: @menu_data}) %>
 <% end %>
 
 <% if @combos %>
-  <div id = "combos" class = "float-right">
-    <div class = "stats">
-      <p><%= combo_count %> | <%= @time_to_solve %> seconds</p>
-    </div>
-      <%= partial(:"partials/table_headers") %>
-      <%= partial(:"partials/combos_list", locals: {combos: @combos}) %>
-  </div>
+  <%= partial(:"partials/combo_column", locals: {combos: @combos, time_to_solve: @time_to_solve}) %>
 <% end %>
