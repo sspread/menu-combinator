@@ -41,7 +41,7 @@ table {
   list-style-type: none;
 }
 #menu-list, #combos-list {
-  height: 400px;
+  height: 440px;
   overflow: scroll;
   position: relative;
 }

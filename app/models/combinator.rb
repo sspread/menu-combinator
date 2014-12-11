@@ -9,22 +9,15 @@ class Combinator
   end
 
   def solve(total = @total, combo = {})
-    if total == 0
-      @combos << combo unless @combos.include? combo
-      return
-    end
-
+    return @combos << combo if total == 0 && !(@combos.include? combo)
     @menu_items.each do |item|
       range = (1..(total/item.price))
       range.each do |quantity|
-        unless combo[item]
-          combo_copy = combo.clone
-          combo_copy[item] = quantity
-          new_total = total-(item.price*quantity)
-          solve(new_total, combo_copy)
-        else
-          return
-        end
+        return if combo[item]
+        combo_copy = combo.clone
+        combo_copy[item] = quantity
+        new_total = total-(item.price*quantity)
+        solve(new_total, combo_copy)
       end
     end
   end
