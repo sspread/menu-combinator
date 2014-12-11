@@ -16,12 +16,7 @@
     <div class = "stats">
       <p>$<%= @menu_data[:price_total] %> price target | <%= @menu_data[:menu_items].length %> items</p>
     </div>
-    <div class = "list_headers">
-      <table>
-        <th class = "item-cell">item</th>
-        <th class = "price-cell">price</th>
-      </table>
-    </div>
+    <%= partial(:"partials/table_headers") %>
     <%= partial(:"partials/menu", locals: {menu: @menu_data[:menu_items]}) %>
   </div>
 <% end %>
@@ -31,20 +26,7 @@
     <div class = "stats">
       <p><%= combo_count %> | <%= @time_to_solve %> seconds</p>
     </div>
-    <div class = "list_headers">
-      <table>
-        <th class = "item-cell">item</th>
-        <th class = "price-cell">price</th>
-        <th class = "quantity-cell">qty</th>
-      </table>
-    </div>
-
-    <div id="combos-list">
-      <ul>
-        <% @combos.each do |combo| %>
-        <%= partial(:"partials/combo", locals: {combo: combo}) %>
-        <% end %>
-      </ul>
-    </div>
+      <%= partial(:"partials/table_headers") %>
+      <%= partial(:"partials/combos_list", locals: {combos: @combos}) %>
   </div>
 <% end %>

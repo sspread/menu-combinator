@@ -93,11 +93,16 @@ a:hover {
   width: 50%;
   text-align: center;
 }
+#menu .quantity-cell {
+  display: none;
+}
 
 .stats {
   text-align: center;
 }
-
+#upload_input {
+  display: none;
+}
 table {
   border: 2px solid grey;
   width: 100%;

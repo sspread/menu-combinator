@@ -1,0 +1,5 @@
+<ul id="combos-list">
+  <% @combos.each do |combo| %>
+  <%= partial(:"partials/combo", locals: {combo: combo}) %>
+  <% end %>
+</ul>
