@@ -1,7 +1,7 @@
-<div id="upload_messages">
+<span id="upload_messages">
   <% if @error %>
-    <p class = "error">Upload failed: <%= @error %></p>
+    <p class = "error">Upload for <%= @filename %> failed: <%= @error %></p>
   <% elsif !@error && @filename %>
     <p class = "success">File successfully uploaded: <%= @filename %></p>
   <% end %>
-</div>
+</span>

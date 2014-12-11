@@ -1,7 +1,9 @@
-<div id = "menu" class = "float-left">
-  <div class = "stats">
-    <p>$<%= menu_data[:price_total] %> price target | <%= menu_data[:menu_items].length %> items</p>
+<% if @menu_data %>
+  <div id = "menu" class = "float-left">
+    <div class = "stats">
+      <p>$<%= menu_data[:price_total] %> price target | <%= menu_data[:menu_items].length %> items</p>
+    </div>
+    <%= partial(:"partials/table_headers") %>
+    <%= partial(:"partials/menu", locals: {menu: menu_data[:menu_items]}) %>
   </div>
-  <%= partial(:"partials/table_headers") %>
-  <%= partial(:"partials/menu", locals: {menu: menu_data[:menu_items]}) %>
-</div>
+<% end %>

@@ -1,15 +1,13 @@
 <div id = "explanation">
-  <p>Ever been at a restaurant and wondered about all the combinations of menu items you could order that would total up to exactly the amount of money in your pocket? Today is your day! Upload a .csv or .txt file with <a href = "https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt">this format</a> to see just that.</p>
-  <%= partial(:"partials/upload_form") %>
+  <p>Ever been at a restaurant and wanted to know every combination of dish you could order that would total up to exactly the amount of money in your pocket? Now, you can. Upload the menu and target price in a .csv or .txt file with <a href = "https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt" target="_blank">this format</a> and let the good times roll.</p>
 </div>
 
+<div id = "form-and-messages">
+  <%= partial(:"partials/upload_form") %>
+  <%= partial(:"partials/upload_message", locals: {error: @error, filename: @filename}) %>
+</div>
 
-<%= partial(:"partials/upload_message", locals: {error: @error, filename: @filename}) %>
-
-<% if @menu_data %>
+<div id = "tables">
   <%= partial(:"partials/menu_column", locals: {menu_data: @menu_data}) %>
-<% end %>
-
-<% if @combos %>
   <%= partial(:"partials/combo_column", locals: {combos: @combos, time_to_solve: @time_to_solve}) %>
-<% end %>
+</div>

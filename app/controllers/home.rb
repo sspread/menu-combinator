@@ -4,13 +4,12 @@ require 'benchmark'
 post '/' do
 
   validate_upload
-  extname = File.extname(@filename)
-  if extname == ".csv"
+  return erb :home if @error
+  if @extname == ".csv"
     @menu_data = CSVParser.create_objects_from_file(MenuItem, @filename)
     combinator = Combinator.new(@menu_data)
     @time_to_solve = Benchmark.realtime {combinator.solve}
     @combos = combinator.combos
-
   elsif extname == ".txt"
   end
 
@@ -26,20 +25,18 @@ private
 
 def validate_upload
   unless file_uploaded?
-    @error = "forgetting the file?"
-    return erb :home
+    @error = "forgetting the file?" 
+    return
   end
-  @filename = params[:file][:filename]
-  unless valid_file_type?
-    @error = "invalid file type - we need '.txt' or '.csv'"
-    return erb :home
-  end
+  @error = "invalid file type - we need '.txt' or '.csv'" unless valid_file_type?
 end
 
 def file_uploaded?
-  params[:file] && @content = params[:file][:tempfile]  
+   params[:file] && (@content = params[:file][:tempfile])
 end
 
 def valid_file_type?
-  [".txt", ".csv"].include? File.extname(@filename)
+  @filename = params[:file][:filename]
+  @extname = File.extname(@filename)
+  [".txt", ".csv"].include? @extname
 end
