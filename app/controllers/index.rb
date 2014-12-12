@@ -1,19 +1,19 @@
 include FileParser
 post '/' do
   validate_upload
-  return erb :home if @error
+  return erb :index if @error
   @menu_data = Parser.create_objects_from_file(MenuItem, @tempfile)
   validate_data
-  return erb :home if @error
+  return erb :index if @error
   combinator = Combinator.new(@menu_data)
   @time_to_solve = Benchmark.realtime {combinator.solve}
   @combos = combinator.combos
   p @combos
-  return erb :home
+  return erb :index
 end
 
 get '/' do
-  erb :home
+  erb :index
 end
 
 private
