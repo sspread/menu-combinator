@@ -8,7 +8,6 @@ post '/' do
   combinator = Combinator.new(@menu_data)
   @time_to_solve = Benchmark.realtime {combinator.solve}
   @combos = combinator.combos
-  p @combos
   return erb :index
 end
 
