@@ -11,7 +11,7 @@ gem 'sinatra-contrib'
 gem 'activesupport', '~>4.1'
 gem 'activerecord', '~>4.1'
 gem 'rake'
-gem 'haml'
+# gem 'haml'
 
 gem 'sinatra-partial'
 
@@ -20,13 +20,13 @@ gem 'shotgun'
 gem 'pry'
 
 group :test do
-  gem 'shoulda-matchers'
+  # gem 'shoulda-matchers'
   gem 'rack-test'
   gem 'rspec'
   gem 'capybara'
 end
 
 group :test, :development do
-  gem 'factory_girl'
-  gem 'faker'
+  # gem 'factory_girl'
+  # gem 'faker'
 end

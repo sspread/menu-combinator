@@ -7,9 +7,9 @@ module FileParser
       error_lines = []
       menu_lines = CSV.read(filename)
       price_total = menu_lines.shift.first
-      error_lines << 1 unless self.valid_price_total(price_total)
+      error_lines << 1 unless self.valid_price_total? price_total
       menu_lines.each.with_index do |line, index|
-        if self.valid_line(line)
+        if self.valid_line? line
           items << object_class.new(name: line.first, price: line.last)
         else
           error_lines << index+2
@@ -20,7 +20,7 @@ module FileParser
     end
 
     private
-    def self.valid_line(line)
+    def self.valid_line?(line)
       line.join(',') =~ /^[^\,]+\,\s*\$?\d+\.?\d{,2}$/
     end
 
@@ -28,7 +28,7 @@ module FileParser
       "invalid line number(s): " + errors.join(', ')
     end
 
-    def self.valid_price_total(price_total)
+    def self.valid_price_total?(price_total)
       price_total =~ /^\$?\d*\.?\d{,2}$/
     end
   end

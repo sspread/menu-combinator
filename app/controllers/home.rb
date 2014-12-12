@@ -1,16 +1,14 @@
 include FileParser
-require 'pry'
-require 'benchmark'
-
 post '/' do
   validate_upload
   return erb :home if @error
-  @menu_data = Parser.create_objects_from_file(MenuItem, @filename)
+  @menu_data = Parser.create_objects_from_file(MenuItem, @tempfile)
   validate_data
   return erb :home if @error
   combinator = Combinator.new(@menu_data)
   @time_to_solve = Benchmark.realtime {combinator.solve}
   @combos = combinator.combos
+  p @combos
   return erb :home
 end
 
@@ -26,7 +24,7 @@ def validate_upload
 end
 
 def file_uploaded?
-   params[:file] && params[:file][:tempfile]
+   params[:file] && @tempfile = params[:file][:tempfile]
 end
 
 def valid_file_type?
