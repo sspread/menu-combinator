@@ -1,4 +1,4 @@
-[Menu Combinator](http://menu-combinator.herokuapp.com)
+[Menu Combinator](http://menucombinator.herokuapp.com)
 ===============
 
 ### Menu -what???
