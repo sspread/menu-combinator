@@ -44,12 +44,18 @@ describe Combinator do
       expect(@combinator.combos).to eq(expected_solution)
     end
     it "should handle a complex combination challenge (test by checking that each combo is unique and sums to target price)" do
-      filepath = 'spec/test_data_files/menu.txt'
+      filepath = 'spec/test_data_files/challenging_menu.txt'
       menu_data = Parser.create_objects_from_file(MenuItem, filepath)
       combinator = Combinator.new(menu_data)
       combinator.solve
       expect(combinator.combos).to eq(combinator.combos.uniq)
       expect(combination_average(combinator.combos)).to eq(combinator.instance_variable_get(:@total))
+    end
+
+    it "should not return any combinations if none are possible" do
+      @combinator.instance_variable_set(:@total, 501)
+      @combinator.solve
+      expect(@combinator.combos).to be_empty
     end
   end
 end

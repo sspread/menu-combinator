@@ -1,30 +1,32 @@
-> **Note**: This branch (master) contains a skeleton without any app code, perfect for creating a _new_ application or challenge. If you're looking for an example app built with this skeleton, take a look at the [example](/../..//tree/example) branch which includes basic CRUD and RSpec tests.
+[Menu Combinator](http://menu-combinator.herokuapp.com)
+===============
 
-### Purpose
-The Sinatra Skeleton:
+### Menu -what???
 
-1. Provides a foundation for building challenges or creating a new Sinatra application.
-2. Demonstrates a reasonable set of practices around building Sinatra applications.
-3. Eases the transition to Rails for Dev Bootcamp students
+This is a Sinatra app that accepts a data file depicting menu items and prices. The top line in the file represents the total price target. The Combinator works recursively to return a collection of all possible combinations of menu items adding up to exactly the price target.
 
-### Quickstart
+#### Assumptions
 
-1.  `bundle install`
-2.  `shotgun config.ru`
+- Results include combinations with more than one of any given item.
+- The data upload must be a .txt or .csv file in [this format](https://tablexi-prod.s3.amazonaws.com/comfy/cms/files/files/000/000/007/original/menu.txt). 
 
-As needed, create models & migrations with the `rake` tasks:
+#### Features
 
-```
-rake generate:migration  # Create an empty migration in db/migrate, e.g., rake generate:migration NAME=create_tasks
-rake generate:model      # Create an empty model in app/models, e.g., rake generate:model NAME=User
-```
+- Combinator#solve is the recursive method that does most of the heavy lifting. It is an entirely original solution to this type of problem. I've included a time benchmark on the app page for this function and I'm curious how it compares to alternative solutions given heavy loads.
+- I've included error handling to ensure that the app doesn't break if given the wrong file type. Front-end scripts take care of file type and presence upon submission, while back-end validations provide a second catch.
+- FileParser is Ruby module that handles the parsing. It creates MenuItem objects only if the data format is valid, and collects line numbers that contain issues. In the event of any invalid data, the app will display line numbers to the user.
 
-### Contributing
+### Local Set-up
 
-We would love for you to help make the skeleton more awesome, There are three ways to contribute:
+#### Tinker
 
-1. Ask for a bug fix or enhancement!
-2. Submit a pull request for a bug fix or enhancement!
-3. Code review an open pull request!
+- Clone this repository.
+- Run `bundle` in the terminal to get the gems.
+- Run `shotgun` to start a server.
+- Visit `localhost:9393` in the browser to use the app.
 
-Be prepared to give and receive specific, actionable, and kind feedback!
+#### Test
+
+- Run the Rspec tests in the terminal with `bundle exec rspec spec -fd`.
+
+
